@@ -1,5 +1,3 @@
-# BrainMRDiff
-
 # BrainMRDiff: A Diffusion Model for Anatomically Consistent Brain MRI Synthesis
 [Moinak Bhattacharya](https://sites.google.com/stonybrook.edu/moinakbhattacharya), [Saumya Gupta](), Annie Singh, Chao Chen, [Gagandeep Singh](https://www.columbiaradiology.org/profile/gagandeep-singh-mbbs), [Prateek Prasanna](https://you.stonybrook.edu/imaginelab/)
 
