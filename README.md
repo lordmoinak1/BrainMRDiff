@@ -6,10 +6,10 @@ Download [BraTS-AG](https://www.synapse.org/Synapse:syn64153130/wiki/631053) (Br
 
 # Train
 ```
-CUDA_VISIBLE_DEVICES=0 python3 train.py --channel_name flair
-CUDA_VISIBLE_DEVICES=0 python3 train.py --channel_name t1
-CUDA_VISIBLE_DEVICES=0 python3 train.py --channel_name t1ce
-CUDA_VISIBLE_DEVICES=0 python3 train.py --channel_name t2 
+CUDA_VISIBLE_DEVICES=0 python3 src/train.py --channel_name flair
+CUDA_VISIBLE_DEVICES=0 python3 src/train.py --channel_name t1
+CUDA_VISIBLE_DEVICES=0 python3 src/train.py --channel_name t1ce
+CUDA_VISIBLE_DEVICES=0 python3 src/train.py --channel_name t2 
 ```
 
 ## Citation
