@@ -63,7 +63,6 @@ def model(channel_name):
     for p in diffusion_model.parameters():
         p.requires_grad = False
 
-    # optimizer = torch.optim.Adam(params=controlnet.parameters(), lr=2.5e-5)
     optimizer = torch.optim.AdamW(params=controlnet.parameters(), lr=1e-5)
 
     controlnet_inferer = ControlNetDiffusionInferer(scheduler)
@@ -84,22 +83,8 @@ class ConvertToMultiChannelBasedOnBratsClassesd(transforms.MapTransform):
         d = dict(data)
         for key in self.keys:
             result = []
-
-            # # merge label 2 and label 3 to construct TC
-            # result.append(torch.logical_or(d[key] == 2, d[key] == 3))
-            # # merge labels 1, 2 and 3 to construct WT
-            # result.append(torch.logical_or(torch.logical_or(d[key] == 2, d[key] == 3), d[key] == 1))
-            # # label 2 is ET
-            # result.append(d[key] == 2)
-
             result.append(torch.logical_or(torch.logical_or(d[key] == 2, d[key] == 3), d[key] == 1))
-
-            # result.append(d[key] == 1)
-            # result.append(d[key] == 2)
-            # result.append(d[key] == 3)
-
             d[key] = torch.stack(result, axis=0).float()
-            # print(d[key].shape)
         return d
 
 class SelectClassesStructureWMTd(transforms.MapTransform):
@@ -327,7 +312,7 @@ def train_controlnet(diffusion_model, controlnet, optimizer, inferer, controlnet
                             controlnet=controlnet,
                             noise=noise,
                             timesteps=timesteps,
-                            cn_cond=(tumor, combined_structure),#(brain, tumor, wmt, cgm, lv),
+                            cn_cond=(tumor, combined_structure),
                         )
                         
                         if epoch < 75:
@@ -358,8 +343,3 @@ if __name__ == "__main__":
     train_loader, val_loader = dataset(args.channel_name)
     diffusion_model, controlnet, optimizer, inferer, controlnet_inferer, scheduler = model(args.channel_name)
     train_controlnet(diffusion_model, controlnet, optimizer, inferer, controlnet_inferer, scheduler, train_loader, val_loader, args.channel_name)
-
-    # CUDA_VISIBLE_DEVICES=0 python3 train.py --channel_name flair
-    # CUDA_VISIBLE_DEVICES=1 python3 train.py --channel_name t1
-    # CUDA_VISIBLE_DEVICES=2 python3 train.py --channel_name t1ce
-    # CUDA_VISIBLE_DEVICES=3 python3 train.py --channel_name t2 
