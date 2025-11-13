@@ -2,7 +2,7 @@
 
 Under review.
 # Datasets
-Download [BraTS-AG](https://www.synapse.org/Synapse:syn64153130/wiki/631053) (BraTS Glioma Segmentation on Pre- and Post-treatment MRI: Pre only) and BraTS-Met (Segmentation of Pre- and Post-Treatment Brain Metastases: Pre only)
+Download [BraTS-AG](https://www.synapse.org/Synapse:syn64153130/wiki/631053) (BraTS Glioma Segmentation on Pre- and Post-treatment MRI: Pre only) and [BraTS-Met](https://www.synapse.org/Synapse:syn64153130/wiki/631058) (Segmentation of Pre- and Post-Treatment Brain Metastases: Pre only)
 
 #Train
 ```
