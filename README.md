@@ -16,5 +16,4 @@ CUDA_VISIBLE_DEVICES=0 python3 train.py --channel_name t2
 If you find this repository useful, please consider giving a star :star: and cite the following
 ```
 TBD
-}
 ```
