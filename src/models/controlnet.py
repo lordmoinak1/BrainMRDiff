@@ -52,6 +52,9 @@ class ControlNetConditioningEmbedding(nn.Module):
     ):
         super().__init__()
 
+        self.lambda_1 = 0.6
+        self.lambda_2 = 0.4
+
         self.conv_in_tumor = Convolution(
             spatial_dims=spatial_dims,
             in_channels=in_channels,
@@ -125,11 +128,11 @@ class ControlNetConditioningEmbedding(nn.Module):
         embedding_tumor = self.conv_in_tumor(tumor)
         embedding_structure = self.conv_in_structure(structure)
 
-        # Combine embeddings by concatenating along the channel dimension #### change_13jan2025 ####
+        # Combine embeddings by concatenating along the channel dimension
         embedding = torch.cat(
             [
-                embedding_tumor,
-                embedding_structure,
+                embedding_tumor*self.lambda_1,
+                embedding_structure*self.lambda_2,
             ],
             dim=1,  # Concatenate along the channel dimension
         )
