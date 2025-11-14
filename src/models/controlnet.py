@@ -52,8 +52,8 @@ class ControlNetConditioningEmbedding(nn.Module):
     ):
         super().__init__()
 
-        self.lambda_1 = 0.6
-        self.lambda_2 = 0.4
+        self.lambda_1 = 2.5
+        self.lambda_2 = 0.2
 
         self.conv_in_tumor = Convolution(
             spatial_dims=spatial_dims,
